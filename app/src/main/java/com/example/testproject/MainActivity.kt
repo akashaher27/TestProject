@@ -21,6 +21,4 @@ class MainActivity :PostLoginActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
-
-
 }
