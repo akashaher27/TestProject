@@ -11,4 +11,11 @@
     <style name="textAppearance_body" parent="TextAppearance.MaterialComponents.Body2"/>
     <style name="textAppearance_button" parent="TextAppearance.MaterialComponents.Button"/>
 
+    <!--button style-->
+    <style name="text_button" parent="Widget.MaterialComponents.Button.TextButton" />
+
+    <style name="outlined_button" parent="Widget.MaterialComponents.Button.OutlinedButton" />
+
+    <style name="contained_button" parent="Widget.MaterialComponents.Button" />
+
 </resources>
