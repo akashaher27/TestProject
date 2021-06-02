@@ -1,5 +1,8 @@
 package com.example.testproject.view.Util
 
+import android.content.Context
+import android.content.SharedPreferences
+import java.lang.Byte
 import java.security.Key
 import java.security.SecureRandom
 import javax.crypto.Cipher
@@ -12,10 +15,15 @@ import javax.crypto.spec.IvParameterSpec
  */
 object CryptoHelper {
     lateinit var iv: ByteArray
+    private val IV_SIZE = 12
+    private val KEY_SIZE = 256
+    private val KEYSTORE_IV_NAME = "KeyStoreIV"
+    private val SHARED_PREFERENCES_NAME = "KeyStoreSettings"
+
 
     fun encryptData(data: ByteArray, cipher: Cipher, key: Key): ByteArray {
-        cipher.init(Cipher.ENCRYPT_MODE, key)
-        iv  = cipher.iv
+        cipher.init(Cipher.ENCRYPT_MODE, key, cipher.parameters)
+        iv = cipher.iv
         return cipher.doFinal(data)
     }
 
@@ -26,12 +34,33 @@ object CryptoHelper {
     }
 
 
+    fun byteArrayToHex(bytes: ByteArray) : String{
+        val hexChars = "0123456789ABCDEF".toCharArray()
+        val result = StringBuffer()
 
+        bytes.forEach {
+            val octet = it.toInt()
+            val firstIndex = (octet and 0xF0).ushr(4)
+            val secondIndex = octet and 0x0F
+            result.append(hexChars[firstIndex])
+            result.append(hexChars[secondIndex])
+        }
 
-    private fun generateIV(size: Int = 12): ByteArray {
-        val random = SecureRandom()
-        val iv = ByteArray(size)
-        random.nextBytes(iv)
-        return iv
+        return result.toString()
+    }
+
+    fun hexToByteArray(hex: String) : ByteArray{
+        val hexChars = "0123456789ABCDEF".toCharArray()
+        val result = ByteArray(hex.length / 2)
+
+        for (i in 0 until hex.length step 2) {
+            val firstIndex = hexChars.indexOf(hex[i]);
+            val secondIndex = hexChars.indexOf(hex[i + 1]);
+
+            val octet = firstIndex.shl(4).or(secondIndex)
+            result.set(i.shr(1), octet.toByte())
+        }
+
+        return result
     }
 }

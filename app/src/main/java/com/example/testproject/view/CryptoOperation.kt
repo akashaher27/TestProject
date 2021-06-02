@@ -27,7 +27,6 @@ class CryptoOperation() : PostLoginActivity() {
             val data = etData.text.toString()
             if (data.isNotEmpty()){
                 encryptData(data)
-
             }
         }
     }

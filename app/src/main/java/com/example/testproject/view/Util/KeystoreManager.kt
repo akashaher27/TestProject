@@ -49,6 +49,7 @@ object KeystoreManager {
                 .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
                 .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
                 .setKeySize(KEY_SIZE)
+                .setUserAuthenticationRequired(false)
                 .build()
 
         generator.init(keySpec)
