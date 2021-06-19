@@ -1,11 +1,10 @@
 package com.example.testproject.view.photo
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.testproject.R
+import com.example.testproject.presenter.photo.PhotoListViewModel
 import com.example.testproject.view.PostLoginActivity
 import com.example.testproject.view.common.recyclerview.EmptyErrorView
 import com.example.testproject.view.common.recyclerview.OnRecyclerViewOnItemClickListener
@@ -17,7 +16,6 @@ import kotlinx.android.synthetic.main.activity_photo_list.*
  * Created by akash on 29,04,2021
  */
 class PhotoListActivity() : PostLoginActivity() {
-
     var adapter = PhotoListAdapter(
         mutableListOf(
             PhotoItem("", "akash"),
@@ -26,6 +24,11 @@ class PhotoListActivity() : PostLoginActivity() {
             PhotoItem("", "akash")
         )
     )
+
+    private val photoListViewModel: PhotoListViewModel by lazy {
+        ViewModelProviders.of(this).get(PhotoListViewModel::class.java)
+    }
+
     override fun setLayoutId(): Int? {
         return R.layout.activity_photo_list
     }
@@ -39,12 +42,16 @@ class PhotoListActivity() : PostLoginActivity() {
         textView.setOnClickListener {
            adapter.clearData()
         }
-
         rvPhotoList.initRecyclerView {
             it.layoutManager = LinearLayoutManager(this)
             it.adapter = adapter
         }
         adapter.setItemClickListener(OnRecyclerViewOnItemClickListener { parent, view, position -> })
         rvPhotoList.addErrorView(EmptyErrorView(this))
+        getPhotoList()
+    }
+
+    private fun getPhotoList(){
+        adapter.addItems(photoListViewModel.getPhotoList())
     }
 }
