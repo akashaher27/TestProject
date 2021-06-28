@@ -2,11 +2,16 @@ package com.example.testproject.data
 
 import android.content.Context
 import android.content.SharedPreferences
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Created by akash on 20,06,2021
  */
-class UserStore(context: Context) : BaseSharePref() {
+
+@Singleton
+class UserStore @Inject constructor(@ApplicationContext context: Context) : BaseSharePref() {
 
     companion object {
         const val PREF_NAME = "USER_STORE"
