@@ -1,10 +1,10 @@
-package com.example.testproject.view.common.recyclerview
+package com.example.common.view.recyclerview
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
-import com.example.testproject.R
+import com.example.common.R
 
 /**
  * Created by akash on 01,05,2021

@@ -1,13 +1,12 @@
-package com.example.testproject.view.common.recyclerview
+package com.example.common.view.recyclerview
 
-import android.content.Context
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 /**
  * Created by akash on 14,01,2021
  */
-abstract class BaseViewHolder<T : Item>(var view: View,var adapter: BaseAdapter<T>) : RecyclerView.ViewHolder(view), View.OnClickListener {
+abstract class BaseViewHolder<T : Item>(var view: View, var adapter: BaseAdapter<T>) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
     abstract fun bindData(item: T)
 

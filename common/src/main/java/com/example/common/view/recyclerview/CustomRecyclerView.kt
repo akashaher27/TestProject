@@ -1,4 +1,4 @@
-package com.example.testproject.view.common.recyclerview
+package com.example.common.view.recyclerview
 
 import android.content.Context
 import android.util.AttributeSet
