@@ -1,21 +1,3 @@
 <resources>
 
-    <!--toolbar style-->
-    <style name="toolbarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="android:background">@color/deep_purple_500</item>
-    </style>
-
-    <!--text style-->
-    <style name="textAppearance_headline" parent="TextAppearance.MaterialComponents.Headline5"/>
-    <style name="textAppearance_subtitle" parent="TextAppearance.MaterialComponents.Subtitle1"/>
-    <style name="textAppearance_body" parent="TextAppearance.MaterialComponents.Body2"/>
-    <style name="textAppearance_button" parent="TextAppearance.MaterialComponents.Button"/>
-
-    <!--button style-->
-    <style name="text_button" parent="Widget.MaterialComponents.Button.TextButton" />
-
-    <style name="outlined_button" parent="Widget.MaterialComponents.Button.OutlinedButton" />
-
-    <style name="contained_button" parent="Widget.MaterialComponents.Button" />
-
 </resources>
