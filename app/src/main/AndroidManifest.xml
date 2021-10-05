@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/base_material_theme">
-        <activity android:name="com.example.testproject.view.photo.PhotoListActivity">
+        <activity android:name="com.example.testproject.view.formField.FormActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

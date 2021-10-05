@@ -1,14 +1,13 @@
 package com.example.testproject.view.photo.adapter
 
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.testproject.R
-import com.example.testproject.view.common.recyclerview.BaseAdapter
-import com.example.testproject.view.common.recyclerview.BaseViewHolder
-import com.example.testproject.view.common.recyclerview.Item
+import com.example.common.view.recyclerview.BaseAdapter
+import com.example.common.view.recyclerview.BaseViewHolder
+import com.example.common.view.recyclerview.Item
 
 
 /**
@@ -16,7 +15,7 @@ import com.example.testproject.view.common.recyclerview.Item
  */
 
 
-class PhotoListAdapter(list:MutableList<PhotoItem>):BaseAdapter<PhotoItem>(list) {
+class PhotoListAdapter(list:MutableList<PhotoItem>): BaseAdapter<PhotoItem>(list) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<PhotoItem> {
         return PhotoViewHolder(
@@ -28,7 +27,7 @@ class PhotoListAdapter(list:MutableList<PhotoItem>):BaseAdapter<PhotoItem>(list)
     }
 }
 
-class PhotoViewHolder(view:View,adapter: PhotoListAdapter):BaseViewHolder<PhotoItem>(view,adapter) {
+class PhotoViewHolder(view:View,adapter: PhotoListAdapter): BaseViewHolder<PhotoItem>(view,adapter) {
 
     private var tvView = view.findViewById<TextView>(R.id.tvPhoto)
 
@@ -44,4 +43,4 @@ class PhotoViewHolder(view:View,adapter: PhotoListAdapter):BaseViewHolder<PhotoI
 data class PhotoItem(
     val uri: String,
     val name: String
-):Item()
+): Item()

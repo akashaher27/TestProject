@@ -3,11 +3,10 @@ package com.example.testproject.view.photo
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.testproject.R
+import com.example.common.view.recyclerview.OnRecyclerViewOnItemClickListener
 import com.example.testproject.presenter.photo.PhotoListViewModel
 import com.example.testproject.view.PostLoginActivity
-import com.example.testproject.view.common.recyclerview.EmptyErrorView
-import com.example.testproject.view.common.recyclerview.OnRecyclerViewOnItemClickListener
+import com.example.common.view.recyclerview.EmptyErrorView
 import com.example.testproject.view.photo.adapter.PhotoItem
 import com.example.testproject.view.photo.adapter.PhotoListAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,13 +28,11 @@ class PhotoListActivity() : PostLoginActivity() {
     private val photoListViewModel:PhotoListViewModel by viewModels()
 
 
-    override fun setLayoutId(): Int? {
-        return R.layout.activity_photo_list
-    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initView()
+        //initView()
     }
 
     private fun initView() {

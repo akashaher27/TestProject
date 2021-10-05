@@ -1,7 +1,6 @@
 package com.example.testproject.view
 
 import android.os.Bundle
-import com.example.testproject.R
 import com.example.testproject.view.Util.CryptoHelper
 import com.example.testproject.view.Util.KeystoreManager
 import kotlinx.android.synthetic.main.activity_crypto.*
@@ -12,13 +11,9 @@ import java.nio.charset.Charset
  */
 class CryptoOperation() : PostLoginActivity() {
 
-    override fun setLayoutId(): Int? {
-        return R.layout.activity_crypto
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initView()
+        //initView()
     }
 
     private fun initView() {

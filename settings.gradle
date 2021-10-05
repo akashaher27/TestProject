@@ -1,2 +1,4 @@
+include ':common'
+include ':form'
 rootProject.name='TestProject'
 include ':app'
