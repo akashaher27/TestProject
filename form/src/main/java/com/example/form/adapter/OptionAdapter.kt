@@ -3,12 +3,13 @@ package com.example.form.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DrawableRes
-import com.example.form.R
 import com.example.common.view.recyclerview.BaseAdapter
 import com.example.common.view.recyclerview.BaseViewHolder
 import com.example.common.view.recyclerview.Item
+import com.example.form.R
 
 
 /**
@@ -31,13 +32,18 @@ class OptionAdapter(options: MutableList<Option>) :
 
 class OptionViewHolder(view: View, adapter: OptionAdapter) : BaseViewHolder<Option>(view, adapter) {
     private var label = view.findViewById(R.id.tvLabel) as TextView
+    private var icon  = view.findViewById(R.id.ivIcon) as ImageView
 
     init {
         view.setOnClickListener(this)
     }
 
     override fun bindData(item: Option) {
+        label.isActivated = true
         label.text = item.label
+        item.icon?.let {
+
+        }
     }
 }
 
