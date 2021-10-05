@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.Guideline;
 import androidx.viewbinding.ViewBinding;
 import com.example.form.R;
 import java.lang.NullPointerException;
@@ -20,14 +21,18 @@ public final class ItemOptionBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final Guideline guideline;
+
+  @NonNull
   public final ImageView ivIcon;
 
   @NonNull
   public final TextView tvLabel;
 
-  private ItemOptionBinding(@NonNull ConstraintLayout rootView, @NonNull ImageView ivIcon,
-      @NonNull TextView tvLabel) {
+  private ItemOptionBinding(@NonNull ConstraintLayout rootView, @NonNull Guideline guideline,
+      @NonNull ImageView ivIcon, @NonNull TextView tvLabel) {
     this.rootView = rootView;
+    this.guideline = guideline;
     this.ivIcon = ivIcon;
     this.tvLabel = tvLabel;
   }
@@ -59,6 +64,11 @@ public final class ItemOptionBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     String missingId;
     missingId: {
+      Guideline guideline = rootView.findViewById(R.id.guideline);
+      if (guideline == null) {
+        missingId = "guideline";
+        break missingId;
+      }
       ImageView ivIcon = rootView.findViewById(R.id.ivIcon);
       if (ivIcon == null) {
         missingId = "ivIcon";
@@ -69,7 +79,7 @@ public final class ItemOptionBinding implements ViewBinding {
         missingId = "tvLabel";
         break missingId;
       }
-      return new ItemOptionBinding((ConstraintLayout) rootView, ivIcon, tvLabel);
+      return new ItemOptionBinding((ConstraintLayout) rootView, guideline, ivIcon, tvLabel);
     }
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
   }
