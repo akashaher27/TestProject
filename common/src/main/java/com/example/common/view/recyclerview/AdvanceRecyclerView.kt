@@ -1,4 +1,4 @@
-package com.example.testproject.view.common.recyclerview
+package com.example.common.view.recyclerview
 
 import android.content.Context
 import android.util.AttributeSet
@@ -8,7 +8,8 @@ import android.widget.LinearLayout
 import androidx.core.view.isNotEmpty
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.example.testproject.R
+import com.example.common.R
+import com.example.testproject.view.common.recyclerview.CustomRecyclerView
 import kotlinx.android.synthetic.main.advance_recycler_view.view.*
 
 /**

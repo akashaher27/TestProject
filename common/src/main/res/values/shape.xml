@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent"></style>
+
+
+    <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent"></style>
+
+    <style name="ShapeAppearance.App.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerRadius">@dimen/radius_largeComponent</item>
+        <item name="cornerSize">@dimen/corner_largeComponent</item>
+    </style>
+
+
+    //bottomSheet
+    <style name="ShapeAppearance.bottomSheet" parent="ShapeAppearance.App.LargeComponent"></style>
+</resources>
