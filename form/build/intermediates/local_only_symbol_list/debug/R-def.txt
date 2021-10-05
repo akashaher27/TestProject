@@ -1,0 +1,19 @@
+R_DEF: Internal format may change without notice
+local
+id appBarLayout
+id etDropdown
+id etValue
+id ivIcon
+id motionLayout
+id rvOptions
+id tlDropdown
+id tlTextField
+id toolbar
+id tvLabel
+id tvMessage
+layout item_option
+layout view_drop_down_field
+layout view_option_bottom_sheet
+layout view_text_field
+layout view_text_form_field
+style Style_Form_Field
