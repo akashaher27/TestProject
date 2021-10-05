@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.DrawableRes
 import com.example.form.R
-import com.example.testproject.view.common.recyclerview.BaseAdapter
-import com.example.testproject.view.common.recyclerview.BaseViewHolder
-import com.example.testproject.view.common.recyclerview.Item
+import com.example.common.view.recyclerview.BaseAdapter
+import com.example.common.view.recyclerview.BaseViewHolder
+import com.example.common.view.recyclerview.Item
 
 
 /**

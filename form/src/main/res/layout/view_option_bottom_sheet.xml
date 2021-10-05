@@ -24,7 +24,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.example.testproject.view.common.recyclerview.CustomRecyclerView
+    <com.example.common.view.recyclerview.CustomRecyclerView
         android:id="@+id/rvOptions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
