@@ -24,10 +24,12 @@ class OptionBottomSheet : BaseBottomSheet() {
         var TAG: String = OptionBottomSheet.javaClass.simpleName
 
         private const val KEY_OPTIONS = "KEY_OPTIONS"
-        fun getInstance(options: ArrayList<Option>): OptionBottomSheet {
+        private const val KEY_TITLE= "KEY_TITLE"
+        fun getInstance(title:String,options: ArrayList<Option>): OptionBottomSheet {
             return OptionBottomSheet().apply {
                 arguments = Bundle().apply {
                     putParcelableArrayList(KEY_OPTIONS, options)
+                    putString(KEY_TITLE,title)
                 }
             }
         }
@@ -35,10 +37,11 @@ class OptionBottomSheet : BaseBottomSheet() {
 
     private lateinit var viewOptionBottomSheetBinding: ViewOptionBottomSheetBinding
     private var options: ArrayList<Option>? = null
-
+    private var title: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         options = arguments?.getParcelableArrayList(KEY_OPTIONS)
+        title = arguments?.getString(KEY_TITLE)
     }
 
     override fun onCreateView(
@@ -59,6 +62,7 @@ class OptionBottomSheet : BaseBottomSheet() {
     private fun initialiseView() {
         viewOptionBottomSheetBinding.toolbar.setBackgroundColor(resources.getColor(R.color.white,null))
         viewOptionBottomSheetBinding.toolbar.navigationIcon = ResourcesCompat.getDrawable(resources,R.drawable.ic_close_24,null)
+        title?.let { viewOptionBottomSheetBinding.toolbar.title = it }
         viewOptionBottomSheetBinding.rvOptions.layoutManager = LinearLayoutManager(requireContext())
         val list = options?.map {
             com.example.form.adapter.Option(
@@ -70,6 +74,15 @@ class OptionBottomSheet : BaseBottomSheet() {
         }
             ?.toMutableList() ?: mutableListOf()
         viewOptionBottomSheetBinding.rvOptions.adapter = OptionAdapter(list)
+
+        setupListener()
+    }
+
+    private fun setupListener()
+    {
+        viewOptionBottomSheetBinding.toolbar.setNavigationOnClickListener {
+            dismiss()
+        }
     }
 
     private fun optionBottomSheetCallback() = object : BottomSheetCallbackListener {

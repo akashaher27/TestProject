@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--text style-->
+
+    <!--base-->
     <style name="TextAppearance_Title_Toolbar" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="android:textSize">@dimen/size_toolbar_title</item>
     </style>
@@ -24,12 +25,13 @@
     <style name="TextAppearance_Overline" parent="TextAppearance.MaterialComponents.Overline"/>
 
 
-    <!--toolbar -->
-    <style name="TextAppearance_App_Title_Toolbar" parent="TextAppearance_Title_Toolbar"></style>
-    <style name="TextAppearance_App_Subtitle_Toolbar" parent="TextAppearance_Subtitle"></style>
-    
-    <!--list title/subtitle-->
-    <style name="TextAppearance_App_List_Title" parent="TextAppearance_Subtitle"></style>
-    <style name="TextAppearance_App_List_Subtitle" parent="TextAppearance_Subtitle"></style>
+    <!--toolbar-->
+    <style name="TextAppearance_Subtitle_Toolbar" parent="TextAppearance_Subtitle"></style>
+
+
+
+    <!--bottom sheet-->
+    <style name="TextAppearance_BottomSheet_Title" parent="TextAppearance_Title_Toolbar"></style>
+
 
 </resources>

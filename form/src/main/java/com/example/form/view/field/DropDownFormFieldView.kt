@@ -56,7 +56,7 @@ class DropDownFormFieldView(context: Context, var dropDownFieldViewModel: DropDo
 
     private fun showOptionSheet(options:ArrayList<Option>?) {
         options?.let {
-            val optionSheet = OptionBottomSheet.getInstance(it)
+            val optionSheet = OptionBottomSheet.getInstance("City",it)
             optionSheet.show(
                 (context as FragmentActivity).supportFragmentManager,
                 OptionBottomSheet.TAG
