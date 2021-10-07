@@ -74,7 +74,20 @@ class DropDownFormFieldView(context: Context, var dropDownFieldViewModel: DropDo
 
     private fun bottomSheetOnItemClickListener() = object :BottomSheetOnItemClickListener<com.example.common.view.bottmoSheet.Option>{
         override fun onItemClick(item: com.example.common.view.bottmoSheet.Option) {
-            etDropdown.text = item.label.toEditable()
+            updateDropDownFieldView(item)
         }
+    }
+
+    private fun updateDropDownFieldView(item: com.example.common.view.bottmoSheet.Option) {
+        dropDownFieldViewModel.value = item.label
+        dropDownFieldViewModel.option?.map {
+            if (it.id == item.id && !it.isSelected) {
+                it.isSelected = true
+            }
+            if (it.id != item.id && it.isSelected){
+                it.isSelected = false
+            }
+        }
+        updateField(dropDownFieldViewModel)
     }
 }

@@ -46,30 +46,14 @@ class FormActivity() : PostLoginActivity() {
             isEditable = true,
             isRequired = true,
             option = arrayListOf(
-                Option("Chennai", isSelected = false),
-                Option("Mumbai", isSelected = false),
-                Option("Kolkata", isSelected = false),
-                Option("Delhi", isSelected = false),
-                Option("Bangalore", isSelected = false),
-                Option("Pune", isSelected = false),
-                Option("Nagpur", isSelected = false),
-                Option("Hyderabad", isSelected = false),
-                Option("Chennai", isSelected = false),
-                Option("Mumbai", isSelected = false),
-                Option("Kolkata", isSelected = false),
-                Option("Delhi", isSelected = false),
-                Option("Bangalore", isSelected = false),
-                Option("Pune", isSelected = false),
-                Option("Nagpur", isSelected = false),
-                Option("Hyderabad", isSelected = false),
-                Option("Chennai", isSelected = false),
-                Option("Mumbai", isSelected = false),
-                Option("Kolkata", isSelected = false),
-                Option("Delhi", isSelected = false),
-                Option("Bangalore", isSelected = false),
-                Option("Pune", isSelected = false),
-                Option("Nagpur", isSelected = false),
-                Option("Hyderabad", isSelected = false)
+                Option("Chennai", id = 10, isSelected = false),
+                Option("Mumbai", id = 11, isSelected = false),
+                Option("Kolkata", id = 12, isSelected = false),
+                Option("Delhi", id = 13, isSelected = false),
+                Option("Bangalore", id = 14, isSelected = false),
+                Option("Pune", id = 15, isSelected = false),
+                Option("Nagpur", id = 16, isSelected = false),
+                Option("Hyderabad", id = 17, isSelected = false)
             )
         )
 

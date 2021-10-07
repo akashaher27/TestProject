@@ -119,9 +119,6 @@ class OptionBottomSheet : BaseBottomSheet() {
     private fun onItemClickListener() =
         OnRecyclerViewOnItemClickListener { parent, view, position ->
             optionAdapter?.getItemAt(position)?.let {
-                var option = optionAdapter?.getItemAt(position)
-                option?.isSelected = true
-                optionAdapter?.notifyItemChanged(position,option)
                 bottomSheetOnItemClickListener?.onItemClick(it)
                 dismiss()
             }

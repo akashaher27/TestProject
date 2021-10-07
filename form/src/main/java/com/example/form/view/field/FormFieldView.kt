@@ -14,5 +14,5 @@ abstract class FormFieldView(context: Context, private var formFieldViewModel: F
         updateFormField(formFieldViewModel)
     }
 
-    protected abstract fun updateFormField(formFieldViewModel: FormFieldViewModel)
+    abstract fun updateFormField(formFieldViewModel: FormFieldViewModel)
 }
