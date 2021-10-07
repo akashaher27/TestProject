@@ -1,18 +1,15 @@
 package com.example.form.view.field
 
 import android.content.Context
-import android.view.View
 import androidx.fragment.app.FragmentActivity
 import com.example.common.util.toEditable
+import com.example.common.view.bottmoSheet.BottomSheetOnItemClickListener
+import com.example.common.view.bottmoSheet.OptionBottomSheet
 import com.example.form.R
 import com.example.form.model.DropDownFieldViewModel
 import com.example.form.model.FormFieldViewModel
 import com.example.form.model.Option
-import com.example.form.view.OptionBottomSheet
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.view_drop_down_field.view.*
-import kotlinx.android.synthetic.main.view_option_bottom_sheet.view.*
 
 /**
  * Created by akash on 30,08,2021
@@ -38,10 +35,10 @@ class DropDownFormFieldView(context: Context, var dropDownFieldViewModel: DropDo
         tlDropdown.hint = dropDownFieldViewModel.label
         etDropdown.text = "".toEditable()
         etDropdown.isFocusableInTouchMode = false
-        addListener()
+        setupListener()
     }
 
-    private fun addListener() {
+    private fun setupListener() {
         etDropdown.setOnClickListener {
             showOptionSheet(dropDownFieldViewModel.option)
         }
@@ -54,34 +51,30 @@ class DropDownFormFieldView(context: Context, var dropDownFieldViewModel: DropDo
         populateView()
     }
 
-    private fun showOptionSheet(options:ArrayList<Option>?) {
-        options?.let {
-            val optionSheet = OptionBottomSheet.getInstance("City",it)
-            optionSheet.show(
-                (context as FragmentActivity).supportFragmentManager,
-                OptionBottomSheet.TAG
+    private fun showOptionSheet(options: ArrayList<Option>?) {
+        var optionList = ArrayList<com.example.common.view.bottmoSheet.Option>()
+        options?.map {
+            optionList.add(
+                com.example.common.view.bottmoSheet.Option(
+                    it.label,
+                    it.id,
+                    it.icon,
+                    it.isSelected
+                )
             )
-            (context as FragmentActivity).supportFragmentManager.executePendingTransactions()
-            var modalBottomSheetBehavior = (optionSheet.dialog as BottomSheetDialog).behavior
-            modalBottomSheetBehavior.addBottomSheetCallback(bottomSheetCallback)
         }
+        val optionSheet = OptionBottomSheet.getInstance(dropDownFieldViewModel.label, optionList)
+        optionSheet.setupBottomSheetOnItemClickListener(bottomSheetOnItemClickListener())
+        optionSheet.show(
+            (context as FragmentActivity).supportFragmentManager,
+            OptionBottomSheet.TAG
+        )
+        (context as FragmentActivity).supportFragmentManager.executePendingTransactions()
     }
 
-    val bottomSheetCallback = object : BottomSheetBehavior.BottomSheetCallback() {
-
-        override fun onStateChanged(bottomSheet: View, newState: Int) {
-            when(newState){
-                BottomSheetBehavior.STATE_COLLAPSED -> {
-                    bottomSheet.appBarLayout.visibility = View.GONE
-                }
-                BottomSheetBehavior.STATE_EXPANDED->{
-                    bottomSheet.appBarLayout.visibility = View.VISIBLE
-                }
-            }
-        }
-
-        override fun onSlide(bottomSheet: View, slideOffset: Float) {
-            // Do something for slide offset.
+    private fun bottomSheetOnItemClickListener() = object :BottomSheetOnItemClickListener<com.example.common.view.bottmoSheet.Option>{
+        override fun onItemClick(item: com.example.common.view.bottmoSheet.Option) {
+            etDropdown.text = item.label.toEditable()
         }
     }
 }

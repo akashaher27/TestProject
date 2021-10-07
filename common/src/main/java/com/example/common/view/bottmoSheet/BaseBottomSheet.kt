@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.View
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 /**
@@ -11,34 +12,28 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
  */
 open class BaseBottomSheet() : BottomSheetDialogFragment() {
 
-    private var bottomSheetCallbackListener: BottomSheetCallbackListener? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
+    private var bottomSheetStateListener: BottomSheetStateListener? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return super.onCreateDialog(savedInstanceState)
+        var dialog = super.onCreateDialog(savedInstanceState)
+        if (dialog is BottomSheetDialog) {
+            dialog.behavior.addBottomSheetCallback(bottomSheetStateListener())
+            dialog.behavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
+        }
+        return dialog
     }
 
-
-    private fun bottomSheetCallBack() = object : BottomSheetBehavior.BottomSheetCallback() {
+    private fun bottomSheetStateListener() = object : BottomSheetBehavior.BottomSheetCallback() {
         override fun onStateChanged(bottomSheet: View, newState: Int) {
-            bottomSheetCallbackListener?.onStateChanged(bottomSheet, newState)
+            bottomSheetStateListener?.onStateChanged(bottomSheet, newState)
         }
 
         override fun onSlide(bottomSheet: View, slideOffset: Float) {
-            bottomSheetCallbackListener?.onSlide(bottomSheet, slideOffset)
-
+            bottomSheetStateListener?.onSlide(bottomSheet, slideOffset)
         }
     }
 
-    fun setupBottomSheetCallbackListener(listener: BottomSheetCallbackListener) {
-        bottomSheetCallbackListener = listener
+    fun setupBottomSheetStateListener(listener: BottomSheetStateListener) {
+        bottomSheetStateListener = listener
     }
 }

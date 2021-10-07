@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
  */
 abstract class BaseAdapter<T : Item>(list: MutableList<T>) : RecyclerView.Adapter<BaseViewHolder<T>>() {
 
-    var baseList: MutableList<T> = list
+    protected var baseList: MutableList<T> = list
     private var listener: OnRecyclerViewOnItemClickListener? = null
 
     abstract override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<T>
@@ -55,6 +55,14 @@ abstract class BaseAdapter<T : Item>(list: MutableList<T>) : RecyclerView.Adapte
 
     fun onItemClick(parent: RecyclerView, view: View, position: Int) {
         listener?.onItemClick(parent, view, position)
+    }
+
+    fun getItemAt(index: Int): T? {
+        var item: T? = null
+        if (index >= 0) {
+            item = baseList[index]
+        }
+        return item
     }
 
 }
