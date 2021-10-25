@@ -66,6 +66,13 @@
         <item name="shapeAppearance">@style/ShapeAppearance.bottomSheet</item>
     </style>
 
+
+    <!--text input layout-->
+
+    //date picker
+    <style name="Style_TextInputLayout_DateInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox"></style>
+
+
 </resources>
 
 

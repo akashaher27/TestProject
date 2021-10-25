@@ -34,12 +34,13 @@ class DropDownFormFieldView(context: Context, var dropDownFieldViewModel: DropDo
     private fun resetViewToInitialState() {
         tlDropdown.hint = dropDownFieldViewModel.label
         etDropdown.text = "".toEditable()
-        etDropdown.isFocusableInTouchMode = false
+        etDropdown.isFocusable = false
         setupListener()
     }
 
     private fun setupListener() {
         etDropdown.setOnClickListener {
+
             showOptionSheet(dropDownFieldViewModel.option)
         }
     }

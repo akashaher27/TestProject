@@ -1,10 +1,13 @@
 package com.example.common.util
 
 import android.app.Activity
+import android.content.Context
 import android.text.Editable
 import android.util.TypedValue
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 
@@ -40,4 +43,12 @@ fun getActionBarHeight(activity: Activity): Int {
     } catch (e: Exception) {
     }
     return actionBarHeight
+}
+
+fun getFragmentManager(context: Context?): FragmentManager? {
+    return when (context) {
+        is AppCompatActivity -> context.supportFragmentManager
+        is ContextThemeWrapper -> getFragmentManager(context.baseContext)
+        else -> null
+    }
 }

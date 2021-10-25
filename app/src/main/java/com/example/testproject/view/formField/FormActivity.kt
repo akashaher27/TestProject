@@ -1,9 +1,11 @@
 package com.example.testproject.view.formField
 
 import android.os.Bundle
+import com.example.form.model.DateFieldViewModel
 import com.example.form.model.DropDownFieldViewModel
 import com.example.form.model.Option
 import com.example.form.model.TextFieldViewModel
+import com.example.form.view.field.DateFormFieldView
 import com.example.form.view.field.DropDownFormFieldView
 import com.example.form.view.field.TextFormFieldView
 import com.example.testproject.databinding.ActivityFormFieldBinding
@@ -37,6 +39,7 @@ class FormActivity() : PostLoginActivity() {
                 value = "",
                 isEditable = true,
                 isRequired = true,
+                isVisible = true,
                 description = ""
             )
 
@@ -45,6 +48,7 @@ class FormActivity() : PostLoginActivity() {
             value = "",
             isEditable = true,
             isRequired = true,
+            isVisible = true,
             option = arrayListOf(
                 Option("Chennai", id = 10, isSelected = false),
                 Option("Mumbai", id = 11, isSelected = false),
@@ -57,8 +61,19 @@ class FormActivity() : PostLoginActivity() {
             )
         )
 
+        val dateField = DateFieldViewModel(
+            label = "DOB",
+            value = "",
+            isEditable = true,
+            isRequired = true,
+            isVisible = true,
+            startDate = "10/02/2020",
+            endDate = "10/04/2020"
+        )
+
         formFieldBinding.formFieldContainer.addView(TextFormFieldView(this, textField))
         formFieldBinding.formFieldContainer.addView(DropDownFormFieldView(this, dropdownField))
+        formFieldBinding.formFieldContainer.addView(DateFormFieldView(this, dateField))
     }
 
     private fun setupToolbar() {
