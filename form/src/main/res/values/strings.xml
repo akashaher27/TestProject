@@ -1,2 +1,5 @@
 <resources>
+
+    <!-- common-->
+    <string name="yet_to_upload">Yet to upload…</string>
 </resources>

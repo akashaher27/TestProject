@@ -1,13 +1,11 @@
 package com.example.testproject.view.formField
 
 import android.os.Bundle
-import com.example.form.model.DateFieldViewModel
-import com.example.form.model.DropDownFieldViewModel
-import com.example.form.model.Option
-import com.example.form.model.TextFieldViewModel
+import com.example.form.model.*
 import com.example.form.view.field.DateFormFieldView
 import com.example.form.view.field.DropDownFormFieldView
 import com.example.form.view.field.TextFormFieldView
+import com.example.form.view.field.UploadFormFieldView
 import com.example.testproject.databinding.ActivityFormFieldBinding
 import com.example.testproject.view.PostLoginActivity
 
@@ -71,9 +69,24 @@ class FormActivity() : PostLoginActivity() {
             endDate = "10/04/2020"
         )
 
+        val uploadField = UploadFieldViewModel(
+            label = "DOB",
+            value = "",
+            isEditable = true,
+            isRequired = true,
+            isVisible = true,
+            attachment = mutableListOf(
+                AttachmentViewModel("Test", "2 mb", 100),
+                AttachmentViewModel("Test", "2 mb", 102),
+                AttachmentViewModel("Test", "2 mb", 103),
+                AttachmentViewModel("Test", "2 mb", 104)
+            )
+        )
+
         formFieldBinding.formFieldContainer.addView(TextFormFieldView(this, textField))
         formFieldBinding.formFieldContainer.addView(DropDownFormFieldView(this, dropdownField))
         formFieldBinding.formFieldContainer.addView(DateFormFieldView(this, dateField))
+        formFieldBinding.formFieldContainer.addView(UploadFormFieldView(this, uploadField))
     }
 
     private fun setupToolbar() {

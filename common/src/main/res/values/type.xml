@@ -31,7 +31,9 @@
 
 
     <!--bottom sheet-->
-    <style name="TextAppearance_BottomSheet_Title" parent="TextAppearance_Title_Toolbar"></style>
+    <style name="TextAppearance_BottomSheet_Title" parent="TextAppearance_Title_Toolbar">
+        <item name="android:textStyle">bold</item>
+    </style>
 
 
 </resources>
