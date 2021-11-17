@@ -54,8 +54,7 @@ class FormActivity() : PostLoginActivity() {
                 Option("Delhi", id = 13, isSelected = false),
                 Option("Bangalore", id = 14, isSelected = false),
                 Option("Pune", id = 15, isSelected = false),
-                Option("Nagpur", id = 16, isSelected = false),
-                Option("Hyderabad", id = 17, isSelected = false)
+                Option("Nagpur", id = 16, isSelected = false)
             )
         )
 

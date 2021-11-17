@@ -3,6 +3,7 @@ package com.example.common.view.bottmoSheet
 import android.app.Dialog
 import android.os.Bundle
 import android.view.View
+import com.example.common.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -18,7 +19,6 @@ open class BaseBottomSheet() : BottomSheetDialogFragment() {
         var dialog = super.onCreateDialog(savedInstanceState)
         if (dialog is BottomSheetDialog) {
             dialog.behavior.addBottomSheetCallback(bottomSheetStateListener())
-            dialog.behavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
         }
         return dialog
     }
@@ -35,5 +35,9 @@ open class BaseBottomSheet() : BottomSheetDialogFragment() {
 
     fun setupBottomSheetStateListener(listener: BottomSheetStateListener) {
         bottomSheetStateListener = listener
+    }
+
+    override fun getTheme(): Int {
+        return R.style.Style_BottomSheet_Modal_Choices
     }
 }

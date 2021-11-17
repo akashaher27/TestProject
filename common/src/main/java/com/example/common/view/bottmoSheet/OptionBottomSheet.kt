@@ -92,9 +92,6 @@ class OptionBottomSheet : BaseBottomSheet() {
         bottomSheetOnItemClickListener = listener
     }
 
-    override fun getTheme(): Int {
-        return R.style.Style_BottomSheet_Modal_Choices
-    }
 
     private fun optionBottomSheetStateListener() = object : BottomSheetStateListener {
         override fun onStateChanged(bottomSheet: View, newState: Int) {

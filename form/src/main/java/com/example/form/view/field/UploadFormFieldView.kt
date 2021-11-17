@@ -3,6 +3,8 @@ package com.example.form.view.field
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
+import androidx.fragment.app.FragmentActivity
+import com.example.common.view.bottmoSheet.UploadChoiceBottomSheet
 import com.example.form.databinding.ViewUploadFieldBinding
 import com.example.form.model.AttachmentViewModel
 import com.example.form.model.FormFieldViewModel
@@ -36,8 +38,19 @@ class UploadFormFieldView(context: Context, var uploadFieldViewModel: UploadFiel
     }
 
     private fun setupListener() {
-        ivAttachment.setOnClickListener {  }
+        ivAttachment.setOnClickListener {
+            showUploadChoiceBottomSheet()
+        }
     }
+
+    private fun showUploadChoiceBottomSheet() {
+        val bottomSheet = UploadChoiceBottomSheet.getInstance()
+        bottomSheet.show(
+            (context as FragmentActivity).supportFragmentManager,
+            UploadChoiceBottomSheet.TAG
+        )
+    }
+
 
     private fun initialiseView() {
         binding = ViewUploadFieldBinding.inflate(LayoutInflater.from(context))
@@ -51,7 +64,9 @@ class UploadFormFieldView(context: Context, var uploadFieldViewModel: UploadFiel
         populateView()
     }
 
-    private fun addAttachment() {}
+    private fun addAttachment() {
+
+    }
 
     private fun removeAttachment(attachment: View) {
         binding?.attachmentContainer?.removeView(attachment)
