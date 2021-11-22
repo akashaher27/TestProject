@@ -17,12 +17,14 @@ class FormActivity() : PostLoginActivity() {
 
     private lateinit var formFieldBinding: ActivityFormFieldBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         formFieldBinding = ActivityFormFieldBinding.inflate(layoutInflater)
         val view = formFieldBinding.root
         setContentView(view)
         initView()
+
     }
 
     private fun initView() {
@@ -31,9 +33,20 @@ class FormActivity() : PostLoginActivity() {
     }
 
     private fun setupForm() {
-        val textField =
+
+        val patientName =
             TextFieldViewModel(
-                label = "Name",
+                label = "Patient Name",
+                value = "Ramesh",
+                isEditable = false,
+                isRequired = true,
+                isVisible = true,
+                description = ""
+            )
+
+        val email =
+            TextFieldViewModel(
+                label = "Email",
                 value = "",
                 isEditable = true,
                 isRequired = true,
@@ -41,25 +54,8 @@ class FormActivity() : PostLoginActivity() {
                 description = ""
             )
 
-        val dropdownField = DropDownFieldViewModel(
-            label = "City",
-            value = "",
-            isEditable = true,
-            isRequired = true,
-            isVisible = true,
-            option = arrayListOf(
-                Option("Chennai", id = 10, isSelected = false),
-                Option("Mumbai", id = 11, isSelected = false),
-                Option("Kolkata", id = 12, isSelected = false),
-                Option("Delhi", id = 13, isSelected = false),
-                Option("Bangalore", id = 14, isSelected = false),
-                Option("Pune", id = 15, isSelected = false),
-                Option("Nagpur", id = 16, isSelected = false)
-            )
-        )
-
-        val dateField = DateFieldViewModel(
-            label = "DOB",
+        val doa = DateFieldViewModel(
+            label = "DOA",
             value = "",
             isEditable = true,
             isRequired = true,
@@ -68,28 +64,49 @@ class FormActivity() : PostLoginActivity() {
             endDate = "10/04/2020"
         )
 
-        val uploadField = UploadFieldViewModel(
-            label = "DOB",
+        val dod = DateFieldViewModel(
+            label = "DOD",
             value = "",
             isEditable = true,
             isRequired = true,
             isVisible = true,
-            attachment = mutableListOf(
-                AttachmentViewModel("Test", "2 mb", 100),
-                AttachmentViewModel("Test", "2 mb", 102),
-                AttachmentViewModel("Test", "2 mb", 103),
-                AttachmentViewModel("Test", "2 mb", 104)
+            startDate = "10/02/2020",
+            endDate = "10/04/2020"
+        )
+
+        val reasonOfReimbursement = DropDownFieldViewModel(
+            label = "Reason Of Reimbursement",
+            value = "",
+            isEditable = true,
+            isRequired = true,
+            isVisible = true,
+            option = arrayListOf(
+                Option("Not aware of cashless process", id = 10, isSelected = false),
+                Option("Pre/Post hospitalisation claim", id = 11, isSelected = false),
+                Option("Hospital advised reimbursement", id = 12, isSelected = false),
+                Option("Health/Insurance ID card not available", id = 13, isSelected = false),
+                Option("Other", id = 14, isSelected = false)
             )
         )
 
-        formFieldBinding.formFieldContainer.addView(TextFormFieldView(this, textField))
-        formFieldBinding.formFieldContainer.addView(DropDownFormFieldView(this, dropdownField))
-        formFieldBinding.formFieldContainer.addView(DateFormFieldView(this, dateField))
-        formFieldBinding.formFieldContainer.addView(UploadFormFieldView(this, uploadField))
+        val uploadMedicalBill = UploadFieldViewModel(
+            label = "Upload Medical Bill",
+            value = "",
+            isEditable = true,
+            isRequired = true,
+            isVisible = false,
+            attachment = null
+        )
+
+        formFieldBinding.formFieldContainer.addView(TextFormFieldView(this,patientName ))
+        formFieldBinding.formFieldContainer.addView(TextFormFieldView(this,email ))
+        formFieldBinding.formFieldContainer.addView(DateFormFieldView(this, doa))
+        formFieldBinding.formFieldContainer.addView(DateFormFieldView(this, dod))
+        formFieldBinding.formFieldContainer.addView(DropDownFormFieldView(this, reasonOfReimbursement))
+        formFieldBinding.formFieldContainer.addView(UploadFormFieldView(this, uploadMedicalBill))
     }
 
     private fun setupToolbar() {
-        //formFieldBinding.appbar.toolbar.title = "form"
+        formFieldBinding.appbar.toolbar.title = "form"
     }
-
 }

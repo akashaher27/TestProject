@@ -3,6 +3,7 @@ package com.example.form.view.field
 import android.content.Context
 import android.text.InputType
 import android.view.LayoutInflater
+import android.view.View
 import com.example.common.util.DateUtil
 import com.example.common.util.getFragmentManager
 import com.example.common.util.toEditable
@@ -11,6 +12,7 @@ import com.example.form.model.DateFieldViewModel
 import com.example.form.model.FormFieldViewModel
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
+import kotlinx.android.synthetic.main.view_text_form_field.view.*
 
 /**
  * Created by akash on 07,10,2021
@@ -29,6 +31,11 @@ class DateFormFieldView(context: Context, var dateFieldViewModel: DateFieldViewM
     }
 
     private fun populateView() {
+        if (dateFieldViewModel.isVisible){
+            container.visibility = View.VISIBLE
+        }else{
+            container.visibility = View.GONE
+        }
 
     }
 

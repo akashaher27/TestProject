@@ -40,4 +40,8 @@ open class BaseBottomSheet() : BottomSheetDialogFragment() {
     override fun getTheme(): Int {
         return R.style.Style_BottomSheet_Modal_Choices
     }
+
+    fun dismissBottomSheet(){
+        dismiss()
+    }
 }

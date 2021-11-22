@@ -10,7 +10,11 @@ import com.example.form.model.AttachmentViewModel
 /**
  * Created by akash on 27,10,2021
  */
-class Attachment(context: Context, var attachment: AttachmentViewModel,var attachmentActionHandler: ActionHandler?) : FrameLayout(context) {
+class Attachment(
+    context: Context,
+    var attachment: AttachmentViewModel,
+    var attachmentActionHandler: ActionHandler?
+) : FrameLayout(context) {
 
     private var binding: ViewAttachmentBinding? = null
     private var actionhandler: ActionHandler? = null
@@ -22,8 +26,13 @@ class Attachment(context: Context, var attachment: AttachmentViewModel,var attac
     }
 
     private fun populateView() {
-        binding?.tvName?.text = attachment.name
-        binding?.tvSize?.text = attachment.size
+        var name = attachment.name
+        if (name.contains(".", true)) {
+            name = attachment.name.substring(0, attachment.name.indexOf("."))
+        }
+        binding?.tvName?.text = name.substring(0, 1).toUpperCase() + name.substring(1);
+        attachment.size?.let { binding?.tvSize?.text = attachment.size }
+
     }
 
     private fun resetViewToInitialState() {

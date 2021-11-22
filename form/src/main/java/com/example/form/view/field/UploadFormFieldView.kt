@@ -4,12 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.FragmentActivity
+import com.example.common.model.FileDetail
+import com.example.common.util.toMegaByte
 import com.example.common.view.bottmoSheet.UploadChoiceBottomSheet
 import com.example.form.databinding.ViewUploadFieldBinding
 import com.example.form.model.AttachmentViewModel
 import com.example.form.model.FormFieldViewModel
 import com.example.form.model.UploadFieldViewModel
-import kotlinx.android.synthetic.main.view_upload_field.view.*
 
 /**
  * Created by akash on 26,10,2021
@@ -26,8 +27,9 @@ class UploadFormFieldView(context: Context, var uploadFieldViewModel: UploadFiel
     }
 
     private fun populateView() {
+
         uploadFieldViewModel.attachment?.forEach {
-            binding?.attachmentContainer?.addView(Attachment(context, it, actionHandler()))
+            addAttachment(it)
         }
     }
 
@@ -38,19 +40,30 @@ class UploadFormFieldView(context: Context, var uploadFieldViewModel: UploadFiel
     }
 
     private fun setupListener() {
-        ivAttachment.setOnClickListener {
+        binding?.ivAttachment?.setOnClickListener {
             showUploadChoiceBottomSheet()
         }
     }
 
     private fun showUploadChoiceBottomSheet() {
         val bottomSheet = UploadChoiceBottomSheet.getInstance()
+        bottomSheet.setFileSelectionListener(object :
+            UploadChoiceBottomSheet.FileSelectionListener {
+            override fun onFileSelected(fileDetail: FileDetail) {
+                var attachment = AttachmentViewModel()
+                fileDetail.name?.let { attachment.name = it }
+                fileDetail.size?.let {
+                    attachment.size = toMegaByte(it).toString().plus(" mb")
+                }
+                attachment.pathUri = fileDetail.uri
+                addAttachment(attachment)
+            }
+        })
         bottomSheet.show(
             (context as FragmentActivity).supportFragmentManager,
             UploadChoiceBottomSheet.TAG
         )
     }
-
 
     private fun initialiseView() {
         binding = ViewUploadFieldBinding.inflate(LayoutInflater.from(context))
@@ -64,8 +77,14 @@ class UploadFormFieldView(context: Context, var uploadFieldViewModel: UploadFiel
         populateView()
     }
 
-    private fun addAttachment() {
-
+    private fun addAttachment(attachmentViewModel: AttachmentViewModel) {
+        binding?.attachmentContainer?.addView(
+            Attachment(
+                context,
+                attachmentViewModel,
+                actionHandler()
+            )
+        )
     }
 
     private fun removeAttachment(attachment: View) {

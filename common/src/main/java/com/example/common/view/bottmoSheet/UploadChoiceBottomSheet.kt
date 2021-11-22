@@ -1,39 +1,48 @@
 package com.example.common.view.bottmoSheet
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.common.databinding.UploadChoiceBottomSheetBinding
+import androidx.activity.result.contract.ActivityResultContracts
+import com.example.common.databinding.ViewUploadChoiceBottomSheetBinding
+import com.example.common.model.FileDetail
+import com.example.common.util.getFileDetail
+import com.example.common.util.getTempFileUri
 
 /**
  * Created by akash on 29,10,2021
  */
 class UploadChoiceBottomSheet() : BaseBottomSheet() {
 
+    interface FileSelectionListener {
+        fun onFileSelected(file: FileDetail)
+    }
+
     companion object {
+        var TAG: String = UploadChoiceBottomSheet.javaClass.simpleName
         fun getInstance(): UploadChoiceBottomSheet {
             return UploadChoiceBottomSheet()
         }
-
-        var TAG = UploadChoiceBottomSheet.javaClass.simpleName
     }
 
-    private lateinit var binding: UploadChoiceBottomSheetBinding
+    private var binding: ViewUploadChoiceBottomSheetBinding? = null
+    private var tempFileUri: Uri? = null
+    private var fileSelectionListener: FileSelectionListener? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        binding = UploadChoiceBottomSheetBinding.inflate(inflater, container, false)
-        return binding.root
+    ): View? {
+        binding = ViewUploadChoiceBottomSheetBinding.inflate(inflater, container, false)
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
-
     }
 
     private fun initView() {
@@ -41,10 +50,23 @@ class UploadChoiceBottomSheet() : BaseBottomSheet() {
     }
 
     private fun setupListener() {
-        binding.camera.setOnClickListener {  }
-        binding.gallery.setOnClickListener {  }
-        binding.drive.setOnClickListener {  }
-        binding.file.setOnClickListener {  }
+        binding?.camera?.setOnClickListener {
+            tempFileUri = getTempFileUri(requireContext())
+            launchCamera.launch(tempFileUri)
+        }
+    }
+
+    fun setFileSelectionListener(listener: FileSelectionListener) {
+        fileSelectionListener = listener
+    }
+
+    private var launchCamera = registerForActivityResult(ActivityResultContracts.TakePicture()) {
+        if (it) {
+            dismissBottomSheet()
+            tempFileUri?.let { uri ->
+                fileSelectionListener?.onFileSelected(getFileDetail(requireContext(), uri))
+            }
+        }
     }
 
 }

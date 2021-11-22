@@ -1,6 +1,7 @@
 package com.example.form.view.field
 
 import android.content.Context
+import android.view.View
 import androidx.fragment.app.FragmentActivity
 import com.example.common.util.toEditable
 import com.example.common.view.bottmoSheet.BottomSheetOnItemClickListener
@@ -24,6 +25,11 @@ class DropDownFormFieldView(context: Context, var dropDownFieldViewModel: DropDo
     }
 
     private fun populateView() {
+        if (dropDownFieldViewModel.isVisible){
+            container.visibility = View.VISIBLE
+        }else{
+            container.visibility = View.GONE
+        }
         etDropdown.text = dropDownFieldViewModel.value.toEditable()
     }
 
@@ -40,7 +46,6 @@ class DropDownFormFieldView(context: Context, var dropDownFieldViewModel: DropDo
 
     private fun setupListener() {
         etDropdown.setOnClickListener {
-
             showOptionSheet(dropDownFieldViewModel.option)
         }
     }

@@ -1,5 +1,6 @@
 package com.example.form.model
 
+import android.net.Uri
 import android.os.Parcelable
 import androidx.annotation.DrawableRes
 import kotlinx.android.parcel.Parcelize
@@ -67,6 +68,9 @@ data class Option(
     var isSelected: Boolean = false
 ) : Parcelable
 
-data class AttachmentViewModel(var name: String,
-                               var size: String,
-                               var id: Long)
+data class AttachmentViewModel(
+    var name: String ="-",
+    var size: String = "-",
+    var id: Long?= null,
+    var pathUri: Uri? = null
+)
