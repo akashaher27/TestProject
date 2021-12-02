@@ -11,6 +11,14 @@
         android:supportsRtl="true"
         android:theme="@style/base_material_theme">
         <activity android:name="com.example.testproject.view.formField.FormActivity">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+
+        <activity android:name="com.example.testproject.view.coroutine.CoroutineActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

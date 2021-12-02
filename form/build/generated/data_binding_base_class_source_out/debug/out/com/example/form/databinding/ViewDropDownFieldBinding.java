@@ -20,14 +20,19 @@ public final class ViewDropDownFieldBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final ConstraintLayout container;
+
+  @NonNull
   public final TextInputEditText etDropdown;
 
   @NonNull
   public final TextInputLayout tlDropdown;
 
   private ViewDropDownFieldBinding(@NonNull ConstraintLayout rootView,
-      @NonNull TextInputEditText etDropdown, @NonNull TextInputLayout tlDropdown) {
+      @NonNull ConstraintLayout container, @NonNull TextInputEditText etDropdown,
+      @NonNull TextInputLayout tlDropdown) {
     this.rootView = rootView;
+    this.container = container;
     this.etDropdown = etDropdown;
     this.tlDropdown = tlDropdown;
   }
@@ -57,20 +62,26 @@ public final class ViewDropDownFieldBinding implements ViewBinding {
   public static ViewDropDownFieldBinding bind(@NonNull View rootView) {
     // The body of this method is generated in a way you would not otherwise write.
     // This is done to optimize the compiled bytecode for size and performance.
-    String missingId;
+    int id;
     missingId: {
-      TextInputEditText etDropdown = rootView.findViewById(R.id.etDropdown);
+      ConstraintLayout container = (ConstraintLayout) rootView;
+
+      id = R.id.etDropdown;
+      TextInputEditText etDropdown = rootView.findViewById(id);
       if (etDropdown == null) {
-        missingId = "etDropdown";
         break missingId;
       }
-      TextInputLayout tlDropdown = rootView.findViewById(R.id.tlDropdown);
+
+      id = R.id.tlDropdown;
+      TextInputLayout tlDropdown = rootView.findViewById(id);
       if (tlDropdown == null) {
-        missingId = "tlDropdown";
         break missingId;
       }
-      return new ViewDropDownFieldBinding((ConstraintLayout) rootView, etDropdown, tlDropdown);
+
+      return new ViewDropDownFieldBinding((ConstraintLayout) rootView, container, etDropdown,
+          tlDropdown);
     }
+    String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
   }
 }

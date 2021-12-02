@@ -20,14 +20,19 @@ public final class ViewTextFormFieldBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final ConstraintLayout container;
+
+  @NonNull
   public final TextInputEditText etValue;
 
   @NonNull
   public final TextInputLayout tlTextField;
 
   private ViewTextFormFieldBinding(@NonNull ConstraintLayout rootView,
-      @NonNull TextInputEditText etValue, @NonNull TextInputLayout tlTextField) {
+      @NonNull ConstraintLayout container, @NonNull TextInputEditText etValue,
+      @NonNull TextInputLayout tlTextField) {
     this.rootView = rootView;
+    this.container = container;
     this.etValue = etValue;
     this.tlTextField = tlTextField;
   }
@@ -57,20 +62,26 @@ public final class ViewTextFormFieldBinding implements ViewBinding {
   public static ViewTextFormFieldBinding bind(@NonNull View rootView) {
     // The body of this method is generated in a way you would not otherwise write.
     // This is done to optimize the compiled bytecode for size and performance.
-    String missingId;
+    int id;
     missingId: {
-      TextInputEditText etValue = rootView.findViewById(R.id.etValue);
+      ConstraintLayout container = (ConstraintLayout) rootView;
+
+      id = R.id.etValue;
+      TextInputEditText etValue = rootView.findViewById(id);
       if (etValue == null) {
-        missingId = "etValue";
         break missingId;
       }
-      TextInputLayout tlTextField = rootView.findViewById(R.id.tlTextField);
+
+      id = R.id.tlTextField;
+      TextInputLayout tlTextField = rootView.findViewById(id);
       if (tlTextField == null) {
-        missingId = "tlTextField";
         break missingId;
       }
-      return new ViewTextFormFieldBinding((ConstraintLayout) rootView, etValue, tlTextField);
+
+      return new ViewTextFormFieldBinding((ConstraintLayout) rootView, container, etValue,
+          tlTextField);
     }
+    String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
   }
 }

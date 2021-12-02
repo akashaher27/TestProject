@@ -61,25 +61,29 @@ public final class ViewTextFieldBinding implements ViewBinding {
   public static ViewTextFieldBinding bind(@NonNull View rootView) {
     // The body of this method is generated in a way you would not otherwise write.
     // This is done to optimize the compiled bytecode for size and performance.
-    String missingId;
+    int id;
     missingId: {
-      EditText etValue = rootView.findViewById(R.id.etValue);
+      id = R.id.etValue;
+      EditText etValue = rootView.findViewById(id);
       if (etValue == null) {
-        missingId = "etValue";
         break missingId;
       }
-      TextView tvLabel = rootView.findViewById(R.id.tvLabel);
+
+      id = R.id.tvLabel;
+      TextView tvLabel = rootView.findViewById(id);
       if (tvLabel == null) {
-        missingId = "tvLabel";
         break missingId;
       }
-      TextView tvMessage = rootView.findViewById(R.id.tvMessage);
+
+      id = R.id.tvMessage;
+      TextView tvMessage = rootView.findViewById(id);
       if (tvMessage == null) {
-        missingId = "tvMessage";
         break missingId;
       }
+
       return new ViewTextFieldBinding((ConstraintLayout) rootView, etValue, tvLabel, tvMessage);
     }
+    String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
   }
 }

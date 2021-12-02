@@ -27,7 +27,13 @@ anim design_bottom_sheet_slide_in
 anim design_bottom_sheet_slide_out
 anim design_snackbar_in
 anim design_snackbar_out
+anim fragment_close_enter
+anim fragment_close_exit
+anim fragment_fade_enter
+anim fragment_fade_exit
 anim fragment_fast_out_extra_slow_in
+anim fragment_open_enter
+anim fragment_open_exit
 anim mtrl_bottom_sheet_slide_in
 anim mtrl_bottom_sheet_slide_out
 anim mtrl_card_lowers_interpolator
@@ -1087,6 +1093,7 @@ color background_floating_material_light
 color background_material_dark
 color background_material_light
 color black
+color black_600
 color bright_foreground_disabled_material_dark
 color bright_foreground_disabled_material_light
 color bright_foreground_inverse_material_dark
@@ -1101,6 +1108,7 @@ color cardview_shadow_end_color
 color cardview_shadow_start_color
 color checkbox_themeable_attribute_color
 color deep_purple
+color deep_purple_50
 color deep_purple_dark
 color design_bottom_navigation_shadow_color
 color design_box_stroke_color
@@ -1814,6 +1822,8 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
+drawable bg_rect_box_grey
+drawable bg_rect_deep_purple_50
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -1827,8 +1837,14 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable ic_attach_file_black_24dp
+drawable ic_baseline_cloud_download_24
+drawable ic_baseline_collections_24
+drawable ic_baseline_folder_24
+drawable ic_baseline_photo_camera_24
 drawable ic_clock_black_24dp
 drawable ic_close_24
+drawable ic_delete_black_24dp
 drawable ic_keyboard_black_24dp
 drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
@@ -1946,6 +1962,7 @@ id appBarLayout
 id arc
 id asConfigured
 id async
+id attachmentContainer
 id auto
 id autoComplete
 id autoCompleteToEnd
@@ -1957,6 +1974,7 @@ id blocking
 id bottom
 id bounce
 id buttonPanel
+id camera
 id cancel_button
 id carryVelocity
 id center
@@ -2008,6 +2026,7 @@ id dragLeft
 id dragRight
 id dragStart
 id dragUp
+id drive
 id dropdown_menu
 id easeIn
 id easeInOut
@@ -2018,11 +2037,13 @@ id elastic
 id end
 id endToStart
 id errorViewHolder
+id etDate
 id etDropdown
 id etValue
 id expand_activities_button
 id expanded_menu
 id fade
+id file
 id fill
 id filled
 id fixed
@@ -2031,11 +2052,15 @@ id floating
 id forever
 id fragment_container_view_tag
 id frost
+id gallery
 id ghost_view
 id ghost_view_holder
 id gone
 id group_divider
 id guideline
+id guideline1
+id guideline2
+id guideline3
 id header_title
 id home
 id honorRequest
@@ -2052,6 +2077,8 @@ id invisible
 id inward
 id italic
 id item_touch_helper_previous_elevation
+id ivAttachment
+id ivDelete
 id ivIcon
 id jumpToEnd
 id jumpToStart
@@ -2254,6 +2281,7 @@ id time
 id title
 id titleDividerNoCustom
 id title_template
+id tlDate
 id tlDropdown
 id tlTextField
 id toolbar
@@ -2266,8 +2294,12 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tvDescription
 id tvLabel
 id tvMessage
+id tvName
+id tvSize
+id tvTitle
 id unchecked
 id uniform
 id unlabeled
@@ -2442,11 +2474,17 @@ layout text_view_with_line_height_from_layout
 layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
+layout upload_choice_bottom_sheet
 layout view_appbar
+layout view_attachment
+layout view_date_field
 layout view_drop_down_field
+layout view_image_title
 layout view_option_bottom_sheet
 layout view_text_field
 layout view_text_form_field
+layout view_upload_choice_bottom_sheet
+layout view_upload_field
 plurals mtrl_badge_content_description
 string abc_action_bar_home_description
 string abc_action_bar_up_description
@@ -2477,17 +2515,22 @@ string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string app_name
 string appbar_scrolling_view_behavior
+string bottomSheet_title_upload
 string bottom_sheet_behavior
 string bottomsheet_action_expand_halfway
+string camera
 string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
 string chip_text
 string clear_text_end_icon_content_description
+string drive
 string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string file
+string gallery
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
 string item_view_role_description
@@ -2554,6 +2597,7 @@ string path_password_strike_through
 string search_menu_title
 string status_bar_notification_info_overflow
 string title_toolbar
+string yet_to_upload
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style AndroidThemeColorAccentYellow
@@ -2845,20 +2889,24 @@ style ShapeAppearanceOverlay_TopRightDifferentCornerSize
 style ShapeAppearance_App_LargeComponent
 style ShapeAppearance_App_MediumComponent
 style ShapeAppearance_App_SmallComponent
+style ShapeAppearance_DatePicker
 style ShapeAppearance_MaterialComponents
 style ShapeAppearance_MaterialComponents_LargeComponent
 style ShapeAppearance_MaterialComponents_MediumComponent
 style ShapeAppearance_MaterialComponents_SmallComponent
 style ShapeAppearance_MaterialComponents_Test
 style ShapeAppearance_MaterialComponents_Tooltip
+style ShapeAppearance_Outline_Box
 style ShapeAppearance_bottomSheet
 style Style_App_AppBarLayout_Transparent
-style Style_App_Toolbar_Standard
-style Style_App_Toolbar_Transparent
-style Style_App_Toolbar_White
 style Style_BottomSheet_Modal_Choices
 style Style_BottomSheet_Modal_Standard
+style Style_BottomSheet_toolbar
 style Style_Form_Field
+style Style_TextInputLayout_DateInput
+style Style_Toolbar_Standard
+style Style_Toolbar_Transparent
+style Style_Toolbar_White
 style TestStyleWithLineHeight
 style TestStyleWithLineHeightAppearance
 style TestStyleWithThemeLineHeightAttribute
@@ -2918,11 +2966,8 @@ style TextAppearance_AppCompat_Widget_PopupMenu_Large
 style TextAppearance_AppCompat_Widget_PopupMenu_Small
 style TextAppearance_AppCompat_Widget_Switch
 style TextAppearance_AppCompat_Widget_TextView_SpinnerItem
-style TextAppearance_App_List_Subtitle
-style TextAppearance_App_List_Title
-style TextAppearance_App_Subtitle_Toolbar
-style TextAppearance_App_Title_Toolbar
 style TextAppearance_Body
+style TextAppearance_BottomSheet_Title
 style TextAppearance_Button
 style TextAppearance_Caption
 style TextAppearance_Compat_Notification
@@ -2961,6 +3006,7 @@ style TextAppearance_MaterialComponents_TimePicker_Title
 style TextAppearance_MaterialComponents_Tooltip
 style TextAppearance_Overline
 style TextAppearance_Subtitle
+style TextAppearance_Subtitle_Toolbar
 style TextAppearance_Title
 style TextAppearance_Title_Toolbar
 style TextAppearance_Widget_AppCompat_ExpandedMenu_Item
@@ -3042,6 +3088,7 @@ style Theme_AppCompat_Light_Dialog_Alert
 style Theme_AppCompat_Light_Dialog_MinWidth
 style Theme_AppCompat_Light_NoActionBar
 style Theme_AppCompat_NoActionBar
+style Theme_DatePicker
 style Theme_Design
 style Theme_Design_BottomSheetDialog
 style Theme_Design_Light
@@ -3365,6 +3412,7 @@ styleable FragmentContainerView android_name android_tag
 styleable GradientColor android_centerColor android_centerX android_centerY android_endColor android_endX android_endY android_gradientRadius android_startColor android_startX android_startY android_tileMode android_type
 styleable GradientColorItem android_color android_offset
 styleable ImageFilterView altSrc blendSrc brightness contrast crossfade imagePanX imagePanY imageRotate imageZoom overlay round roundPercent saturation warmth
+styleable ImageTitleView icon title
 styleable Insets paddingBottomSystemWindowInsets paddingLeftSystemWindowInsets paddingRightSystemWindowInsets paddingTopSystemWindowInsets
 styleable KeyAttribute android_alpha android_elevation android_rotation android_rotationX android_rotationY android_scaleX android_scaleY android_transformPivotX android_transformPivotY android_translationX android_translationY android_translationZ curveFit framePosition motionProgress motionTarget transformPivotTarget transitionEasing transitionPathRotate
 styleable KeyCycle android_alpha android_elevation android_rotation android_rotationX android_rotationY android_scaleX android_scaleY android_translationX android_translationY android_translationZ curveFit framePosition motionProgress motionTarget transitionEasing transitionPathRotate waveOffset wavePeriod wavePhase waveShape waveVariesBy
@@ -3450,6 +3498,7 @@ styleable ViewPager2 android_orientation
 styleable ViewStubCompat android_id android_inflatedId android_layout
 styleable ViewTransition SharedValue SharedValueId android_id clearsTag duration ifTagNotSet ifTagSet motionInterpolator motionTarget onStateTransition pathMotionArc setsTag transitionDisable upDuration viewTransitionMode
 styleable include constraintSet
+xml provider_paths
 xml standalone_badge
 xml standalone_badge_gravity_bottom_end
 xml standalone_badge_gravity_bottom_start
